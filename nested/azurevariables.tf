@@ -1,6 +1,6 @@
 variable "ResourceGroup" {
 description = "name of the resource group which we created the vnet"
-default = "komaliTerraform"
+default = "srikala-terraform"
 }
 variable "Location" {
 description = "where the vnet is create"
