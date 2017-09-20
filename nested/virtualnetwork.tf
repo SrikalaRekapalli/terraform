@@ -1,4 +1,3 @@
-
 resource "azurerm_resource_group" "ResourceGroup" {
     name = "${var.ResourceGroup}"
     location = "${var.Location}"
