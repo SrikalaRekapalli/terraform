@@ -1,6 +1,22 @@
+variable "subscription_id" {
+description = "name of the resource group which we created the vnet"
+default = "086ef973-2199-477b-9b40-c3d05c01a287"
+}
+variable "client_id" {
+description = "where the vnet is create"
+default = "a382813c-e42b-44da-b84e-33acc27554e9"
+}
+variable "client_secret" {
+description = "CIDR block for virtual network"
+default  = "022fd881-d0fa-45f1-99eb-e32cbe428b0d"
+}
+variable  "tenant_id"  {
+description = "CIDR block for subnet1"
+default = "dcf9e4d3-f44a-4c28-be12-8245c0d35668"
+}
 variable "ResourceGroup" {
 description = "name of the resource group which we created the vnet"
-default = "srikala-terraform"
+default = "srikala-terraform1"
 }
 variable "Location" {
 description = "where the vnet is create"
