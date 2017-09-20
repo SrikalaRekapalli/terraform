@@ -1,3 +1,22 @@
+
+variable "ResourceGroup" {
+description = "name of the resource group which we created the vnet"
+}
+variable "Location" {
+description = "where the vnet is create"
+}
+variable "Vnet_AddressPrefix" {
+description = "CIDR block for virtual network"
+}
+variable "Subnet1" {
+description = "CIDR block for subnet1"
+}
+variable "Subnet2" {
+description = "CIDR block for subnet2"
+}
+variable "Subnet3" {
+description = "CIDR block for subnet3"
+}
 resource "azurerm_virtual_network" "Vnet" {
 name = "Vnet"
 address_space = ["${var.Vnet_AddressPrefix}"]
