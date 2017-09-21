@@ -93,3 +93,42 @@ private_ip_address_allocation = "${var.DynamicIP}"
 public_ip_address_id = "${azurerm_public_ip.DyanamicIP.ip_address}"
   }
 }
+resource "azurerm_virtual_machine" "linuxvmStg" {
+  name                  = "${var.vmName}"
+  location              = "${var.Location}"
+  resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
+   network_interface_ids = ["${azurerm_network_interface.nic1.id}"]
+  vm_size               = "${var.vmSize}"
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+  storage_os_disk {
+    name          = "myosdisk1"
+    vhd_uri       = "${azurerm_storage_account.Storage.primary_blob_endpoint}${azurerm_storage_container.container.name}/osdisk1.vhd"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+  }
+  storage_data_disk {
+    name          = "datadisk0"
+    vhd_uri       = "${azurerm_storage_account.Storage.primary_blob_endpoint}${azurerm_storage_container.container.name}/datadisk0.vhd"
+    disk_size_gb  = "1023"
+    create_option = "Empty"
+    lun           = 0
+  }
+
+ os_profile {
+    computer_name  = "${var.vmName}"
+    admin_username = "${var.userName}"
+    admin_password = "${var.password}"
+  }
+
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+  tags {
+    environment = "staging"
+  }
+}

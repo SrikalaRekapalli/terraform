@@ -54,3 +54,19 @@ variable "storageAccid" {
 description = "storage account name id used for unique string"
 default = "storage"
 }
+variable "vmSize" {
+description = "virtual machine size"
+default = "Standard_DS1_v2"
+}
+variable "vmName" {
+description = "virtual machine name"
+default = "TerraformVM"
+}
+variable "userName" {
+description = "virtual machine admin user name"
+default = "adminuser"
+}
+variable "password" {
+description = "virtual machine admin password"
+default = "Password@1234"
+}
