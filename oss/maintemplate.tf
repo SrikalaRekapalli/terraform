@@ -50,14 +50,14 @@ resource "azurerm_network_security_rule" "SSH" {
   resource_group_name         = "${azurerm_resource_group.ResourceGroup.name}"
   network_security_group_name = "${azurerm_network_security_group.Nsg.name}"
 }
-resource "random_id" "stg" {
+resource "random_id" "uniq" {
   keepers = {
     storageid = "${var.storageAccid}"
   }
   byte_length = 8
 }
 resource "azurerm_storage_account" "Storage" {
-name                = "unmng${random_id.stg.hex}"
+name                = "${azurerm_resource_group.ResourceGroup.name}${random_id.uniq.hex}"
 resource_group_name = "${azurerm_resource_group.ResourceGroup.name}"
 location     = "${var.Location}"
 account_type = "${var.storageAccType}"
@@ -68,18 +68,12 @@ resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
 storage_account_name  = "${azurerm_storage_account.Storage.name}"
 container_access_type = "private"
 }
-resource "random_id" "dns" {
-keepers = {
-dnsid = "${var.DynamicDNS}"
-}
-byte_length = 8
-}
 resource "azurerm_public_ip" "DyanamicIP" {
 name                         = "DynamicIP2"
 location                     = "${var.Location}"
 resource_group_name          = "${azurerm_resource_group.ResourceGroup.name}"
 public_ip_address_allocation = "${var.DynamicIP}"
-domain_name_label = "saf${random_id.dns.hex}"
+domain_name_label = "saf${random_id.uniq.hex}"
 }
 resource "azurerm_network_interface" "Nic" {
 name                = "nic"
@@ -107,18 +101,11 @@ network_interface_ids = ["${azurerm_network_interface.Nic.id}"]
   }
   storage_os_disk {
     name          = "myosdisk1"
-    vhd_uri       = "${azurerm_storage_account.Storage.primary_blob_endpoint}${azurerm_storage_container.container.name}/osdisk1.vhd"
+    image_uri     = "${var.source_img_uri}"
+    vhd_uri       = "https://${var.existing_storage_acct}.blob.core.windows.net/${var.existing_resource_group}-vhds/${var.hostname}${random_id.uniq.hex}osdisk.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
-  storage_data_disk {
-    name          = "datadisk0"
-    vhd_uri       = "${azurerm_storage_account.Storage.primary_blob_endpoint}${azurerm_storage_container.container.name}/datadisk0.vhd"
-    disk_size_gb  = "1023"
-    create_option = "Empty"
-    lun           = 0
-  }
-
  os_profile {
     computer_name  = "${var.vmName}"
     admin_username = "${var.userName}"

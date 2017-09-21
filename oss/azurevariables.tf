@@ -70,3 +70,15 @@ variable "password" {
 description = "virtual machine admin password"
 default = "Password@1234"
 }
+variable "existing_storage_acct" {
+description = "The name of the storage account in which your existing VHD and image reside"
+default     = "jenkinstestrgdiag334"
+}
+variable "existing_resource_group" {
+description = "The name of the resource group in which your existing storage account with your existing VHD resides"
+default     = "jenkinstestrg"
+}
+variable "source_img_uri" {
+description = "Full URIs for one or more custom images (VHDs) that should be copied to the deployment storage account to spin up new VMs from them. URLs must be comma separated."
+default = "https://jenkinstestrgdiag334.blob.core.windows.net/system/Microsoft.Compute/Images/images/packer-osDisk.4457b934-e720-4502-af02-74067092ae1a.vhd"
+}
