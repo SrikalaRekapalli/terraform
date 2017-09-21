@@ -93,12 +93,6 @@ resource "azurerm_virtual_machine" "linuxvm" {
   resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
 network_interface_ids = ["${azurerm_network_interface.Nic.id}"]
   vm_size               = "${var.vmSize}"
-  storage_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
   storage_os_disk {
     name          = "myosdisk1"
     image_uri     = "${var.source_img_uri}"
