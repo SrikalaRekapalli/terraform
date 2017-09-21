@@ -63,7 +63,7 @@ location     = "${var.Location}"
 account_type = "${var.storageAccType}"
 }
 resource "azurerm_storage_container" "container" {
-name                  = "stgcontainer11"
+name                  = "stgcontainer"
 resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
 storage_account_name  = "${azurerm_storage_account.Storage.name}"
 container_access_type = "private"
@@ -93,7 +93,7 @@ private_ip_address_allocation = "${var.DynamicIP}"
 public_ip_address_id = "${azurerm_public_ip.DyanamicIP.id}"
   }
 }
-resource "azurerm_virtual_machine" "linuxvmStg" {
+resource "azurerm_virtual_machine" "linuxvm" {
   name                  = "${var.vmName}"
   location              = "${var.Location}"
   resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
