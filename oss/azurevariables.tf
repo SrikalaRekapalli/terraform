@@ -60,7 +60,7 @@ default = "Standard_DS1_v2"
 }
 variable "os_type" {
 description = "Type of OS on the existing vhd. Allowed values: 'windows' or 'linux'."
-default     = "windows"
+default     = "linux"
 }
 variable "vmName" {
 description = "virtual machine name"
