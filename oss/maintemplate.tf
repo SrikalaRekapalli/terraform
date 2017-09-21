@@ -97,7 +97,7 @@ resource "azurerm_virtual_machine" "linuxvmStg" {
   name                  = "${var.vmName}"
   location              = "${var.Location}"
   resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
-   network_interface_ids = ["${azurerm_network_interface.nic1.id}"]
+network_interface_ids = ["${azurerm_network_interface.Nic.id}"]
   vm_size               = "${var.vmSize}"
   storage_image_reference {
     publisher = "Canonical"
