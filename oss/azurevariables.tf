@@ -58,6 +58,10 @@ variable "vmSize" {
 description = "virtual machine size"
 default = "Standard_DS1_v2"
 }
+variable "os_type" {
+description = "Type of OS on the existing vhd. Allowed values: 'windows' or 'linux'."
+default     = "windows"
+}
 variable "vmName" {
 description = "virtual machine name"
 default = "TerraformVM"
