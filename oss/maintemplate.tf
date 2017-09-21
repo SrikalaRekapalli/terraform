@@ -90,7 +90,7 @@ ip_configuration {
 name                          = "configuration1"
 subnet_id                     = "${azurerm_subnet.subnet1.id}"
 private_ip_address_allocation = "${var.DynamicIP}"
-public_ip_address_id = "${azurerm_public_ip.DyanamicIP.ip_address}"
+public_ip_address_id = "${azurerm_public_ip.DyanamicIP.id}"
   }
 }
 resource "azurerm_virtual_machine" "linuxvmStg" {
