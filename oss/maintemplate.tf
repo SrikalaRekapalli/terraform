@@ -57,7 +57,7 @@ resource "random_id" "uniq" {
   byte_length = 8
 }
 resource "azurerm_storage_account" "Storage" {
-name                = "${azurerm_resource_group.ResourceGroup.name}${random_id.uniq.hex}"
+name                = "strg${random_id.uniq.hex}"
 resource_group_name = "${azurerm_resource_group.ResourceGroup.name}"
 location     = "${var.Location}"
 account_type = "${var.storageAccType}"
