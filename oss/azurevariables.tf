@@ -38,3 +38,11 @@ variable "Subnet3" {
 description = "CIDR block for subnet3"
 default = "10.0.3.0/24"
 }
+variable "DynamicIP" {
+description =  "public_ip_address_allocation dynamic type"
+default = "dynamic"
+}
+variable "DynamicDNS" {
+description = "dynamicip domain name label"
+default = "testdnsipdynamic"
+}
