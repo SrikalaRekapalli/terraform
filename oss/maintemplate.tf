@@ -102,7 +102,7 @@ network_interface_ids = ["${azurerm_network_interface.Nic.id}"]
   storage_os_disk {
     name          = "myosdisk1"
     image_uri     = "${var.source_img_uri}"
-    vhd_uri       = "https://${var.existing_storage_acct}.blob.core.windows.net/${var.existing_resource_group}-vhds/${var.hostname}${random_id.uniq.hex}osdisk.vhd"
+    vhd_uri       = "https://${var.existing_storage_acct}.blob.core.windows.net/${var.existing_resource_group}-vhds/${var.vmName}${random_id.uniq.hex}osdisk.vhd"
     caching       = "ReadWrite"
     create_option = "FromImage"
   }
