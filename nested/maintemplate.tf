@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "ResourceGroup" {
-    name = "${var.ResourceGroup}"
-    location = "${var.Location}"
+name = "${var.ResourceGroup}"
+location = "${var.Location}"
 }
 resource "azurerm_virtual_network" "Vnet" {
 name = "Vnet"
