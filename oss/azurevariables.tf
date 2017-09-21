@@ -44,5 +44,13 @@ default = "dynamic"
 }
 variable "DynamicDNS" {
 description = "dynamicip domain name label"
-default = "testdnsipdynamic"
+default = "dns"
+}
+variable "storageAccType" {
+description = "storage account type"
+default = "Standard_LRS"
+}
+variable "storageAccid" {
+description = "storage account name id used for unique string"
+default = "storage"
 }

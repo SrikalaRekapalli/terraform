@@ -50,16 +50,46 @@ resource "azurerm_network_security_rule" "SSH" {
   resource_group_name         = "${azurerm_resource_group.ResourceGroup.name}"
   network_security_group_name = "${azurerm_network_security_group.Nsg.name}"
 }
-resource "random_id" "dns" {
+resource "random_id" "stg" {
   keepers = {
-    dnsid = "${var.DynamicDNS}"
+    storageid = "${var.storageAccid}"
   }
   byte_length = 8
 }
+resource "azurerm_storage_account" "Storage" {
+name                = "unmng${random_id.stg.hex}"
+resource_group_name = "${azurerm_resource_group.ResourceGroup.name}"
+location     = "${var.Location}"
+account_type = "${var.storageAccType}"
+}
+resource "azurerm_storage_container" "container" {
+name                  = "stgcontainer11"
+resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
+storage_account_name  = "${azurerm_storage_account.Storage.name}"
+container_access_type = "private"
+}
+resource "random_id" "dns" {
+keepers = {
+dnsid = "${var.DynamicDNS}"
+}
+byte_length = 8
+}
 resource "azurerm_public_ip" "DyanamicIP" {
-  name                         = "DynamicIP2"
-  location                     = "${var.Location}"
-  resource_group_name          = "${azurerm_resource_group.ResourceGroup.name}"
-  public_ip_address_allocation = "${var.DynamicIP}"
-  domain_name_label = "saf${random_id.dns.hex}"
+name                         = "DynamicIP2"
+location                     = "${var.Location}"
+resource_group_name          = "${azurerm_resource_group.ResourceGroup.name}"
+public_ip_address_allocation = "${var.DynamicIP}"
+domain_name_label = "saf${random_id.dns.hex}"
+}
+resource "azurerm_network_interface" "Nic" {
+name                = "nic"
+location            = "${var.Location}"
+resource_group_name = "${azurerm_resource_group.ResourceGroup.name}"
+
+ip_configuration {
+name                          = "configuration1"
+subnet_id                     = "${azurerm_subnet.subnet1.id}"
+private_ip_address_allocation = "${var.DynamicIP}"
+public_ip_address_id = "${azurerm_public_ip.DyanamicIP.ip_address}"
+  }
 }
