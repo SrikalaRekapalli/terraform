@@ -16,7 +16,7 @@ default = "dcf9e4d3-f44a-4c28-be12-8245c0d35668"
 }
 variable "ResourceGroup" {
 description = "name of the resource group which we created the vnet"
-default = "srikala-terraform2"
+default = "srikala-terraform"
 }
 variable "Location" {
 description = "where the vnet is create"
