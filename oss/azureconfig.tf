@@ -28,12 +28,6 @@ description = "CIDR block for virtual network"
 variable "Subnet1" {
 description = "CIDR block for subnet1"
 }
-variable "Subnet2" {
-description = "CIDR block for subnet2"
-}
-variable "Subnet3" {
-description = "CIDR block for subnet3"
-}
 variable "DynamicIP" {
 description =  "public_ip_address_allocation dynamic type"
 }
