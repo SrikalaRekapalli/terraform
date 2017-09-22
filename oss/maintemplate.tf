@@ -58,9 +58,6 @@ description = "virtual machine admin password"
 variable "existing_storage_acct" {
 description = "The name of the storage account in which your existing VHD and image reside"
 }
-variable "existing_resource_group" {
-description = "The name of the resource group in which your existing storage account with your existing VHD resides"
-}
 variable "source_img_uri" {
 description = "Full URIs for one or more custom images (VHDs) that should be copied to the deployment storage account to spin up new VMs from them. URLs must be comma separated."
 }
@@ -144,7 +141,7 @@ network_interface_ids = ["${azurerm_network_interface.Nic.id}"]
   storage_os_disk {
     name          = "myosdisk1"
     image_uri     = "${var.source_img_uri}"
-    vhd_uri       = "https://${var.existing_storage_acct}.blob.core.windows.net/${var.existing_resource_group}-vhds/${var.vmName}${random_id.uniq.hex}osdisk.vhd"
+    vhd_uri       = "https://${var.existing_storage_acct}.blob.core.windows.net/vhds/${var.vmName}${random_id.uniq.hex}osdisk.vhd"
     os_type       = "${var.os_type}"
     caching       = "ReadWrite"
     create_option = "FromImage"
