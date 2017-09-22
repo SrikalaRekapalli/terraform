@@ -42,7 +42,7 @@ resource "random_id" "uniq" {
   keepers = {
     unique_id = "${var.uniqueid}"
   }
-  byte_length = 2
+  byte_length = 8
 }
 resource "azurerm_storage_account" "Storage" {
 name                = "strg${random_id.uniq.hex}"
