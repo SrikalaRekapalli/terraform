@@ -1,14 +1,14 @@
 variable "subscription_id" {
 description = "name of the resource group which we created the vnet"
-default = "086ef973-2199-477b-9b40-c3d05c01a287"
+default = "7eab3893-bd71-4690-84a5-47624df0b0e5"
 }
 variable "client_id" {
 description = "where the vnet is create"
-default = "a382813c-e42b-44da-b84e-33acc27554e9"
+default = "d4962dd2-e97e-4f3e-aa00-45e202305782"
 }
 variable "client_secret" {
 description = "CIDR block for virtual network"
-default  = "022fd881-d0fa-45f1-99eb-e32cbe428b0d"
+default  = "+u9VpFP/ZeqpBKuKoLcAUV8vQmB9xwOhi+RZT7Am/Ys="
 }
 variable  "tenant_id"  {
 description = "CIDR block for subnet1"
